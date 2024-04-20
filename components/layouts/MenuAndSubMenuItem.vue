@@ -36,14 +36,15 @@ const incrementLevel = computed(() => {
                         pr-1 py-1 my-1
                         font-medium text-sm
                         text-gray dark:text-white 
-                        bg-gray-100 dark:bg-white-100
-                        hover:bg-gray-400/20 dark:hover:bg-white-500/10
+                        bg-gray-400/20 dark:bg-white-100
+                        hover:bg-gray-400/80 dark:hover:bg-white-500/10
                         hover:cursor-pointer 
                         "
                     :style="computedLeftPadding"
                         >
                 <UIcon :name="item.icon" size="1.25em" class="place-self-center" dynamic />
-                <span class="grow place-self-center mr-2">{{ item.label }}</span>
+                <!-- <span class="grow place-self-center mr-2">{{ item.label }}</span> -->
+                <ULink class="grow place-self-center mr-2" :to="item.to" >{{ item.label }}</ULink>
                 <UIcon v-if="item.isGroup" name="i-heroicons-chevron-down" class="w-9 self-center justify-self-end" dynamic />
                 <div v-else class="h-full w-9 self-center justify-self-end"></div>
             </div>

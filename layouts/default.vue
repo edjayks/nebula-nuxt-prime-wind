@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /* __placeholder__ */
-import VerticalNestedMenu from '~/components/layouts/VerticalNestedMenu.vue'
+import VerticalLeftMenuBar from '~/components/layouts/VerticalLeftMenuBar.vue'
 
 const menuItems: any[] = [
     {
@@ -60,17 +60,10 @@ const menuItems: any[] = [
   <div class="w-full h-screen flex flex-row flex-nowrap">
 
     <!-- Left Side -->
-    <div class="min-w-24 border-r-2">
-        <!-- Header -->
-
-        <!-- Menus -->
-        <!-- <div> -->
-            <VerticalNestedMenu :items="menuItems" />
-        <!-- </div> -->
+    <VerticalLeftMenuBar :items="menuItems" class="min-w-24 border-r-2" />
+    <!-- <div class="min-w-24 border-r-2">
         
-
-        <!-- Footer -->
-    </div>
+    </div> -->
 
     <!-- Right Side -->
     <div class="min-w-32 grow">
