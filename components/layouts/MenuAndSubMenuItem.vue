@@ -15,9 +15,15 @@ export interface MenuItem {
 const props = defineProps(['level', 'items'])
 
 const computedLeftPadding = computed(() => {
-    const paddingLeft = 'padding-left:' + (Number(props.level) * 1) + 'rem;'
+    let paddingLeft = 0
+    if (Number(props.level) === 1) {
+        paddingLeft = 1
+    } else {
+        paddingLeft = Number(props.level) * 1
+    }
+    
     // console.log(`computedLeftPadding props.level ${props.level} , ${paddingLeft}`)
-    return paddingLeft
+    return 'padding-left:' + paddingLeft + 'rem;'
 })
 
 const incrementLevel = computed(() => {
@@ -31,19 +37,16 @@ const incrementLevel = computed(() => {
 <template>
     <ul>
         <li v-for="(item, index) in items" >
-            <div class="flex flex-row flex-nowrap gap-1.5 
+            <div class="flex flex-row flex-nowrap gap-1 
                         rounded-md            
-                        pr-1 py-1 my-1
-                        font-medium text-sm
-                        text-gray dark:text-white 
-                        bg-gray-400/20 dark:bg-white-100
-                        hover:bg-gray-400/80 dark:hover:bg-white-500/10
+                        py-1 my-0.5
+                        text-sm
+                        hover:bg-gray-400/20 dark:hover:bg-white-500/10
                         hover:cursor-pointer 
                         "
                     :style="computedLeftPadding"
                         >
-                <UIcon :name="item.icon" size="1.25em" class="place-self-center" dynamic />
-                <!-- <span class="grow place-self-center mr-2">{{ item.label }}</span> -->
+                <UIcon :name="item.icon" size="1.5em" class="place-self-center" dynamic />
                 <ULink class="grow place-self-center mr-2" :to="item.to" >{{ item.label }}</ULink>
                 <UIcon v-if="item.isGroup" name="i-heroicons-chevron-down" class="w-8 self-center justify-self-end" dynamic />
                 <div v-else class="w-8 self-center justify-self-end"></div>
