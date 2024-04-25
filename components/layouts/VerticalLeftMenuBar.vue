@@ -6,7 +6,6 @@ const menuItems: any[] = [
     {
         icon: 'i-heroicons-home',
         label: "Home",
-        isGroup: true,
         isCollapsible: true,
         isCollapsed: false,
         to: "/",
@@ -14,7 +13,6 @@ const menuItems: any[] = [
             {
                 icon: 'i-heroicons-chart-pie',
                 label: "Dashboard",
-                isGroup: true,
                 isCollapsible: true,
                 isCollapsed: false,
                 to: "/dashboard",
@@ -22,19 +20,27 @@ const menuItems: any[] = [
                     {
                         icon: 'i-heroicons-chart-bar',
                         label: "Daily Insights",
-                        isGroup: false,
                         to: "/dashboard",
+                        items: [
+                            {
+                                icon: 'i-heroicons-chart-bar',
+                                label: "Trend 01",
+                                to: "/dashboard",
+                            },
+                            {
+                                label: "Trend 02",
+                                to: "/dashboard",
+                            },
+                        ]
                     },
                     {
                         icon: 'i-heroicons-chart-bar',
                         label: "Monthly Insights",
-                        isGroup: false,
                         to: "/dashboard",
                     },
                     {
                         icon: 'i-heroicons-chart-bar',
                         label: "Yearly Insights",
-                        isGroup: false,
                         to: "/dashboard",
                     }
                 ]
@@ -44,13 +50,23 @@ const menuItems: any[] = [
     {
         icon: 'i-heroicons-clipboard-document-list',
         label: "Order",
-        isGroup: false,
         to: "/order",
+        items: [
+            {
+                icon: 'i-heroicons-archive-box',
+                label: "Order Group",
+                to: "/order",
+            },
+            {
+                icon: 'i-heroicons-archive-box',
+                label: "Order Line",
+                to: "/order",
+            }
+        ]
     },
     {
         icon: 'i-heroicons-archive-box',
         label: "Product",
-        isGroup: false,
         to: "/order",
     }
 ]

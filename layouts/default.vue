@@ -40,7 +40,7 @@ function stopResizing(event: MouseEvent) {
 
     <!-- Resizer -->
     <div id="leftright-resizer"
-        class="hover:cursor-col-resize h-screen w-1 bg-gray-400/20 dark:bg-white-100"/>
+        class="hover:cursor-col-resize h-screen w-0.5 bg-gray-400/20 dark:bg-white-100"/>
 
     <!-- Right Side -->
     <div id="right-content" class="min-w-32 grow">
