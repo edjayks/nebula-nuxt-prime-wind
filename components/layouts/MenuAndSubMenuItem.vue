@@ -122,15 +122,8 @@ function toggleCollapse(currentItem: any, index: number) {
                     <div v-else class="w-8 self-center justify-self-end"></div>
                 </div>
 
-                <MenuAndSubMenuItem :id="`sub-${level}${index}`" v-if="hasChildItems(item)" :items="item.items" :level="incrementLevel"
-                    class="sub-menu"></MenuAndSubMenuItem>
+                <MenuAndSubMenuItem :id="`sub-${level}${index}`" v-if="hasChildItems(item)" :items="item.items" :level="incrementLevel"></MenuAndSubMenuItem>
             </div>
         </li>
     </ul>
 </template>
-
-<style scoped>
-.sub-menu {
-    transition: all 2s;
-}
-</style>
