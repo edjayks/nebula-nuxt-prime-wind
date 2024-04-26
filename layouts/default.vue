@@ -4,6 +4,8 @@ import VerticalLeftMenuBar from '~/components/layouts/VerticalLeftMenuBar.vue'
 import TopBar from '~/components/layouts/TopBar.vue';
 import { ref, reactive, computed } from 'vue'
 
+const sideBarMinWidth = 180
+const sideBarMaxWidth = 360
 const sideBarWidth = ref(265)
 const dragging = ref(false)
 
@@ -17,7 +19,13 @@ function initResizing(event: MouseEvent) {
 function startResizing(event: MouseEvent) {
     if (dragging.value === true && event.buttons > 0) {
         // console.log('mousemove') 
-        sideBarWidth.value = sideBarWidth.value + event.movementX       
+        if (event.movementX < 0 && (sideBarWidth.value + event.movementX) <= sideBarMinWidth) {
+            return
+        }
+        if (event.movementX > 0 && (sideBarWidth.value + event.movementX) >= sideBarMaxWidth) {
+            return
+        }
+        sideBarWidth.value = sideBarWidth.value + event.movementX
     }
 }
 
