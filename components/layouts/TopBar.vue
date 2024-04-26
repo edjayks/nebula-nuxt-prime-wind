@@ -9,11 +9,12 @@ function toggleSideBar() {
 </script>
 
 <template>
-    <div class="flex flex-row flex-nowrap gap-2 " @click="toggleSideBar">
+    <div class="flex flex-row flex-nowrap gap-2 ">
         <!-- Button to collapse or expand the side bar -->
         <div class="p-1 rounded-md place-self-start
                     hover:bg-gray-400/20 dark:hover:bg-white-500/10
-                    hover:cursor-pointer">
+                    hover:cursor-pointer"
+                    @click="toggleSideBar">
             <UIcon name="i-heroicons-bars-3"
                 size="1.5em"
                 dynamic/>
