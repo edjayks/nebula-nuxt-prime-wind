@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /* __placeholder__ */
 import VerticalLeftMenuBar from '~/components/layouts/VerticalLeftMenuBar.vue'
+import TopBar from '~/components/layouts/TopBar.vue';
 import { ref, reactive, computed } from 'vue'
 
 const sideBarWidth = ref(265)
@@ -45,9 +46,7 @@ function stopResizing(event: MouseEvent) {
     <!-- Right Side -->
     <div id="right-content" class="min-w-32 grow">
         <!-- Top navi bar -->
-        <div class="p-4 border-b-2">
-            Top bar
-        </div>
+        <TopBar class="p-4 border-b-2"/>
         <div class="p-4">
             <slot/>
         <!-- Content Area -->
