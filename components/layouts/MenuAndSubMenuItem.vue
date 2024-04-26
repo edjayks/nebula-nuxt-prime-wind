@@ -64,7 +64,7 @@ function getCollapseOrExpandIcon (currentItem: any) {
 
 
 
-function toggleCollapse(currentItem: any) {
+function toggleCollapse(currentItem: any, index: number) {
 
     if (currentItem.isCollapsible === undefined || currentItem.isCollapsible === null) {
         return ''
@@ -73,8 +73,22 @@ function toggleCollapse(currentItem: any) {
     if (currentItem.isCollapsible) {
         if (currentItem.isCollapsed) {
             currentItem.isCollapsed = false
+
+            const ele = document.getElementById(`sub-${props.level}${index}`)
+            if (ele !== undefined && ele !== null) {
+                
+                ele.style.display = 'list-item';
+            }
+
         } else {
             currentItem.isCollapsed = true
+
+            const ele = document.getElementById(`sub-${props.level}${index}`)
+            if (ele !== undefined && ele !== null) {
+                
+                ele.style.display = 'none';
+                
+            }
         }
     }
     console.log('toggleCollapse:', currentItem.isCollapsed)
@@ -94,7 +108,7 @@ function toggleCollapse(currentItem: any) {
                             hover:cursor-pointer 
                             "
                         :style="computedLeftPadding"
-                        @click="toggleCollapse(item)"
+                        @click="toggleCollapse(item, index)"
                             >
                     <UIcon v-if="item.icon" :name="item.icon" size="1.5em" class="place-self-center" dynamic />
 
@@ -108,8 +122,15 @@ function toggleCollapse(currentItem: any) {
                     <div v-else class="w-8 self-center justify-self-end"></div>
                 </div>
 
-                <MenuAndSubMenuItem v-if="hasChildItems(item)" :items="item.items" :level="incrementLevel"></MenuAndSubMenuItem>
+                <MenuAndSubMenuItem :id="`sub-${level}${index}`" v-if="hasChildItems(item)" :items="item.items" :level="incrementLevel"
+                    class="sub-menu"></MenuAndSubMenuItem>
             </div>
         </li>
     </ul>
 </template>
+
+<style scoped>
+.sub-menu {
+    transition: all 2s;
+}
+</style>
