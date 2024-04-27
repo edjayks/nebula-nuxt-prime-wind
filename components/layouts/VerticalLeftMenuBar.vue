@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import MenuAndSubMenuItem from './MenuAndSubMenuItem.vue'
+import MenuAndSubMenuItem, { type MenuItem } from './MenuAndSubMenuItem.vue'
 import { ref, reactive, computed } from 'vue'
 
-const menuItems: any[] = [
+const menuItems: MenuItem[] = [
     {
         icon: 'i-heroicons-home',
         label: "Home",
@@ -15,7 +15,6 @@ const menuItems: any[] = [
                 label: "Dashboard",
                 isCollapsible: true,
                 isCollapsed: false,
-                to: "/dashboard",
                 items: [
                     {
                         icon: 'i-heroicons-chart-bar',
@@ -25,7 +24,6 @@ const menuItems: any[] = [
                             {
                                 icon: 'i-heroicons-chart-bar',
                                 label: "Trend 01",
-                                to: "/dashboard",
                             },
                             {
                                 label: "Trend 02",

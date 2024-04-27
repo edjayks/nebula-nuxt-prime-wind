@@ -7,7 +7,7 @@ export interface MenuItem {
     label: string;
     isCollapsible?: boolean;
     isCollapsed?: boolean;
-    to: string;
+    to?: string;
     items?: MenuItem[];
 }
 
@@ -104,21 +104,24 @@ function toggleCollapse(currentItem: any, index: number) {
                             rounded-md            
                             py-1 
                             text-sm
-                            hover:bg-gray-400/20 dark:hover:bg-white-500/10
+                            hover:bg-gray-400/20 dark:hover:bg-white-500/20
                             hover:cursor-pointer 
                             "
                         :style="computedLeftPadding"
-                        @click="toggleCollapse(item, index)"
+                        
                             >
                     <UIcon v-if="item.icon" :name="item.icon" size="1.5em" class="place-self-center" dynamic />
 
-                    <ULink class="grow place-self-center mr-2" :to="item.to" >{{ item.label }}</ULink>
+                    <ULink v-if="item.to !== undefined && item.to !== null" class="grow place-self-center mr-2" :to="item.to" >{{ item.label }}</ULink>
+                    <span v-else class="grow place-self-center mr-2" to="" >{{ item.label }}</span>
                     
                     <UIcon 
                         v-if="hasChildItems(item)" 
                         :name="getCollapseOrExpandIcon(item)" 
-                        class="w-8 self-center justify-self-end" 
-                        dynamic />
+                        class="w-8 self-center justify-self-end
+                            hover:font-bold hover:text-lg" 
+                        dynamic 
+                        @click="toggleCollapse(item, index)"/>
                     <div v-else class="w-8 self-center justify-self-end"></div>
                 </div>
 
