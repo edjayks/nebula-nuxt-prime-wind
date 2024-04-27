@@ -69,11 +69,37 @@ const menuItems: MenuItem[] = [
     }
 ]
 
+const rMenuItems = reactive(menuItems)
+
+function handleMenuItemClickedEvent(clickedMenuItem: MenuItem) {
+    console.log('handleMenuItemClickedEvent-root', clickedMenuItem)
+
+    inActivateRecursively(clickedMenuItem, rMenuItems);
+
+    return true
+}
+
+function inActivateRecursively(clickedMenuItem: MenuItem, startingMenuItems: MenuItem[]) {
+    startingMenuItems.forEach(item => {
+        if (item.to && (item.to === clickedMenuItem.to && item.label === clickedMenuItem.label)) {
+            item.isActive = true;
+            console.log('Activated item', item.label)
+        } else {
+            item.isActive = false;
+            console.log('Inactivated item', item.label)
+        }
+
+        if (item.items && item.items.length > 0) {
+            inActivateRecursively(clickedMenuItem, item.items)
+        }
+    });
+}
+
 </script>
 
 <template>
 
-    <div class="py-1 px-4 h-screen flex flex-col flex-nowrap">
+    <div class="py-1 px-4 h-screen flex flex-col flex-nowrap select-none">
 
         <!-- Header -->
         <div class="justify-self-start flex flex-row flex-nowrap gap-1 justify-center items-center py-4">
@@ -82,7 +108,7 @@ const menuItems: MenuItem[] = [
         </div>
 
         <!-- Menus -->
-        <MenuAndSubMenuItem :items="menuItems" level="1" class="justify-self-start grow"></MenuAndSubMenuItem>
+        <MenuAndSubMenuItem :items="rMenuItems" level="1" class="justify-self-start grow" @menu-clicked="handleMenuItemClickedEvent"></MenuAndSubMenuItem>
         <UDivider />
 
         <!-- Footer -->
