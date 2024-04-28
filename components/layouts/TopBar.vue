@@ -10,6 +10,16 @@ function toggleSideBar() {
     }
 }
 
+const colorMode = useColorMode()
+const isDark = computed({
+  get () {
+    return colorMode.value === 'dark'
+  },
+  set () {
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+  }
+})
+
 </script>
 
 <template>
@@ -44,9 +54,11 @@ function toggleSideBar() {
         <div class="p-1 rounded-md justify-self-end
                     hover:bg-gray-400/20 dark:hover:bg-white-500/10
                     hover:cursor-pointer">
-            <UIcon name="i-heroicons-moon"
+            <UIcon 
+                :name="isDark ? 'i-heroicons-moon' : 'i-heroicons-sun'"
                 size="1.5em"
-                dynamic/>
+                dynamic
+                @click="isDark = !isDark"/>
         </div>
     </div>
 </template>
