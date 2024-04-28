@@ -72,7 +72,7 @@ const menuItems: MenuItem[] = [
 const rMenuItems = reactive(menuItems)
 
 function handleMenuItemClickedEvent(clickedMenuItem: MenuItem) {
-    console.log('handleMenuItemClickedEvent-root', clickedMenuItem)
+    // console.log('handleMenuItemClickedEvent-root', clickedMenuItem)
 
     inActivateRecursively(clickedMenuItem, rMenuItems);
 
@@ -83,10 +83,10 @@ function inActivateRecursively(clickedMenuItem: MenuItem, startingMenuItems: Men
     startingMenuItems.forEach(item => {
         if (item.to && (item.to === clickedMenuItem.to && item.label === clickedMenuItem.label)) {
             item.isActive = true;
-            console.log('Activated item', item.label)
+            // console.log('Activated item', item.label)
         } else {
             item.isActive = false;
-            console.log('Inactivated item', item.label)
+            // console.log('Inactivated item', item.label)
         }
 
         if (item.items && item.items.length > 0) {

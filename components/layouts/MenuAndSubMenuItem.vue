@@ -129,7 +129,7 @@ function handleMenuItemClickedEvent(event: any, clickedMenuItem: MenuItem, index
                             @click="handleMenuItemClickedEvent($event, item, index)" 
                             
                     >{{ item.label }}</ULink>
-                    <span v-else class="grow place-self-center mr-2">o-{{ item.label }}</span>
+                    <span v-else class="grow place-self-center mr-2">{{ item.label }}</span>
                     
                     <UIcon 
                         v-if="hasChildItems(item)" 
