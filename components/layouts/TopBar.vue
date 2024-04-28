@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import Notification from '../Notification.vue'
+
+const notificationOpen = ref(false)
 
 function toggleSideBar() {
     const leftSideBar = document.getElementById('left-sidebar')
@@ -6,6 +9,7 @@ function toggleSideBar() {
         leftSideBar.style.display = leftSideBar.style.display === 'none' ? 'flex' : 'none'
     }
 }
+
 </script>
 
 <template>
@@ -25,9 +29,16 @@ function toggleSideBar() {
         <div class="p-1 rounded-md justify-self-end
                     hover:bg-gray-400/20 dark:hover:bg-white-500/10
                     hover:cursor-pointer">
-            <UIcon name="i-heroicons-bell"
-                    size="1.5em"
-                    dynamic/>
+            <UPopover v-model:open="notificationOpen" mode="click">
+                <UIcon name="i-heroicons-bell"
+                        size="1.5em"
+                        dynamic/>
+                <template #panel>
+                    <div class="p-4">
+                        <Notification/>
+                    </div>
+                </template>
+            </UPopover>
         </div>
 
         <div class="p-1 rounded-md justify-self-end
