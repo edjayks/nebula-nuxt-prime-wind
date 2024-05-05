@@ -66,7 +66,29 @@ const menuItems: MenuItem[] = [
         icon: 'i-heroicons-archive-box',
         label: "Product",
         to: "/order",
+    },
+    {
+        label: "Screens",
+        items: [
+            {
+                label: "Login",
+                to: "/login",
+            },
+            {
+                label: "UnAuthorised",
+                to: "/unauthorised",
+            },
+            {
+                label: "Not Found",
+                to: "/notfound",
+            },
+            {
+                label: "Server Error",
+                to: "/servererror",
+            }
+        ]
     }
+    
 ]
 
 const rMenuItems = reactive(menuItems)
